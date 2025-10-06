@@ -1,22 +1,23 @@
 import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react'
+import { theme as baseTheme } from 'styles/theme'
 
 interface ThemeColors {
   primaryBg: string
   secondaryBg: string
   accent: string
- secondary: string
- font: string
- fontSecondary: string
+  secondary: string
+  font: string
+  fontSecondary: string
   border: string
  hover: string
 }
 
 interface Theme {
   colors: ThemeColors
-  shadow: {
+ shadow: {
     main: string
     card: string
-  }
+ }
   media: {
     xxs: string
     xs: string
@@ -40,11 +41,11 @@ interface ThemeContextType {
 
 const darkColors: ThemeColors = {
   primaryBg: '#0A192F',   // Темно-синий фон (профессиональный)
-  secondaryBg: '#112240', // Вторичный темно-синий фон
+  secondaryBg: '#11240', // Вторичный темно-синий фон
   accent: '#64FFDA',     // Акцентный цвет (бирюзовый)
   secondary: '#5CA6E0',  // Вторичный акцентный цвет (голубой)
   font: '#CCD6F6',       // Светло-серый шрифт
-  fontSecondary: '#892B0', // Вторичный цвет шрифта (серо-голубой)
+  fontSecondary: '#8892B0', // Вторичный цвет шрифта (серо-голубой)
  border: '#233554',     // Цвет границ
   hover: '#64FFDA',      // Цвет при наведении
 }
@@ -54,7 +55,7 @@ const lightColors: ThemeColors = {
  secondaryBg: '#F8F9FA', // Светло-серый фон
   accent: '#0A192F',     // Темно-синий акцент
   secondary: '#64FFDA',  // Бирюзовый вторичный цвет
- font: '#2D3748',       // Темно-серый шрифт
+  font: '#2D3748',       // Темно-серый шрифт
   fontSecondary: '#718096', // Вторичный цвет шрифта (светло-серый)
   border: '#E2E8F0',     // Светлый цвет границ
   hover: '#0A192F',      // Темно-синий при наведении
@@ -66,37 +67,22 @@ const shadow = {
 }
 
 const lightShadow = {
-  main: '0 2px 4px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1)',
+  main: '0 2px 4px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0.1)',
   card: '0 4px 16px rgba(0, 0, 0.1)',
-}
-
-const media = {
-  xxs: 'screen and (max-width: 320px)', // Очень маленькие экраны
-  xs: 'screen and (max-width: 480px)',  // Маленькие экраны
-  sm: 'screen and (max-width: 576px)',  // Маленькие планшеты и большие телефоны
-  tablet: 'screen and (max-width: 768px)', // Планшеты
-  md: 'screen and (max-width: 992px)',   // Средние экраны
-  lg: 'screen and (max-width: 1200px)',  // Большие экраны
- xl: 'screen and (max-width: 1400px)',  // Очень большие экраны
-  mobile: 'screen and (max-width: 576px)',
-}
-
-const animations = {
-  transitions: '0.3s ease-in-out',
 }
 
 const darkTheme: Theme = {
   colors: darkColors,
-  shadow,
-  media,
-  animations,
+ shadow,
+  media: baseTheme.media,
+  animations: baseTheme.animations,
 }
 
 const lightTheme: Theme = {
   colors: lightColors,
   shadow: lightShadow,
-  media,
-  animations,
+  media: baseTheme.media,
+  animations: baseTheme.animations,
 }
 
 const getInitialTheme = (): Theme => {
@@ -129,7 +115,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light')
-  }, [isDark])
+ }, [isDark])
 
   const toggleTheme = () => {
     const newTheme = isDark ? lightTheme : darkTheme

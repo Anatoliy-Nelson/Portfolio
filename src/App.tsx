@@ -31,11 +31,8 @@ const AppWithTheme = () => {
     setIsMounted(true)
   }, [])
 
-  // Объединяем тему из контекста с базовыми настройками
-  const fullTheme = { ...baseTheme, ...theme }
-
   return (
-    <StyledThemeProvider theme={fullTheme}>
+    <StyledThemeProvider theme={theme}>
       <Cursor isMobile={isMobile} />
       <Particle />
       <header role="banner">
@@ -78,7 +75,7 @@ const AppWithTheme = () => {
       )}
       <GoTopButton />
     </StyledThemeProvider>
-  )
+ )
 }
 
 function App() {
