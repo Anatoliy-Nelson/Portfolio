@@ -42,7 +42,7 @@ i18next
   .use(LanguageDetector)
   .init({
     debug: false, // Отключаем debug в продакшене
-    fallbackLng: 'en',
+    fallbackLng: 'ru',
     detection: {
       order: ['localStorage', 'navigator'],
       caches: ['localStorage'],
@@ -57,7 +57,7 @@ i18next
 
 // Загружаем ресурсы для текущего языка
 const initializeCurrentLanguage = async () => {
-  const currentLng = i18next.language || 'en'
+  const currentLng = i18next.language || 'ru'
   try {
     const resources = await loadLanguageResources(currentLng)
     Object.entries(resources).forEach(([namespace, resource]) => {
