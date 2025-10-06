@@ -38,10 +38,7 @@ const AppWithTheme = () => {
       <header role="banner">
         <Header isMobile={isMobile} />
       </header>
-      <div style={{ position: 'fixed', top: '20px', right: '20px', zIndex: 1000, display: 'flex', gap: '10px' }}>
-        <LanguageSwitcher />
-        <ThemeSwitcher />
-      </div>
+      <LanguageSwitcher />
       <main role="main">
         <PageTransition>
           <Main />
