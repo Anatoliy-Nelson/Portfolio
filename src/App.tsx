@@ -1,12 +1,11 @@
 import { Suspense, lazy, useState, useEffect } from 'react'
 import { ThemeProvider as StyledThemeProvider } from 'styled-components'
 import { ThemeProvider, useTheme } from 'contexts/ThemeContext'
-import { theme as baseTheme } from 'styles/theme'
 import useIsMobile from 'hooks/useIsMobile'
 
 // Компоненты, которые видны сразу, загружаем сразу
 import { Header, LanguageSwitcher, Main } from 'layout'
-import { Cursor, GoTopButton, Particle, PageTransition, ThemeSwitcher } from 'components'
+import { Cursor, GoTopButton, Particle, PageTransition } from 'components'
 
 // Ленивая загрузка компонентов, которые не видны сразу при загрузке
 const LazyAboutMe = lazy(() => import('./layout/sections/about-me/about-me').then(module => ({ default: module.AboutMe })))
@@ -23,8 +22,8 @@ const I18nInitializer = ({ children }: { children: React.ReactNode }) => {
 
 // Компонент для отображения приложения с темой
 const AppWithTheme = () => {
-  const { theme } = useTheme()
-  const isMobile = useIsMobile()
+  const { theme, isDark } = useTheme()
+ const isMobile = useIsMobile()
   const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
@@ -32,7 +31,7 @@ const AppWithTheme = () => {
   }, [])
 
   return (
-    <StyledThemeProvider theme={theme}>
+    <StyledThemeProvider theme={theme} key={isDark ? 'dark' : 'light'}>
       <Cursor isMobile={isMobile} />
       <Particle />
       <header role="banner">
@@ -72,7 +71,7 @@ const AppWithTheme = () => {
       )}
       <GoTopButton />
     </StyledThemeProvider>
- )
+  )
 }
 
 function App() {
