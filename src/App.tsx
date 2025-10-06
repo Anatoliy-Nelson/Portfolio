@@ -20,18 +20,44 @@ const I18nInitializer = ({ children }: { children: React.ReactNode }) => {
   return <>{children}</>
 }
 
+function App() {
+  const [appThemeKey, setAppThemeKey] = useState(0)
+  
+  // Компонент для отслеживания изменений темы и перерендеринга приложения
+  const ThemeWatcher = () => {
+    const { isDark } = useTheme()
+    
+    useEffect(() => {
+      setAppThemeKey(prev => prev + 1)
+    }, [isDark])
+    
+    return null
+  }
+
+  return (
+    <Suspense fallback={<div>Загрузка...</div>}>
+      <I18nInitializer>
+        <ThemeProvider>
+          <ThemeWatcher />
+          <AppWithTheme key={appThemeKey} />
+        </ThemeProvider>
+      </I18nInitializer>
+    </Suspense>
+  )
+}
+
 // Компонент для отображения приложения с темой
 const AppWithTheme = () => {
-  const { theme, isDark } = useTheme()
+  const { theme } = useTheme()
  const isMobile = useIsMobile()
-  const [isMounted, setIsMounted] = useState(false)
+ const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
     setIsMounted(true)
   }, [])
 
   return (
-    <StyledThemeProvider theme={theme} key={isDark ? 'dark' : 'light'}>
+    <StyledThemeProvider theme={theme}>
       <Cursor isMobile={isMobile} />
       <Particle />
       <header role="banner">
@@ -71,19 +97,7 @@ const AppWithTheme = () => {
       )}
       <GoTopButton />
     </StyledThemeProvider>
-  )
-}
-
-function App() {
-  return (
-    <Suspense fallback={<div>Загрузка...</div>}>
-      <I18nInitializer>
-        <ThemeProvider>
-          <AppWithTheme />
-        </ThemeProvider>
-      </I18nInitializer>
-    </Suspense>
-  )
+ )
 }
 
 export default App

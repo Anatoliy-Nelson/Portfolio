@@ -119,7 +119,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
 
   const toggleTheme = () => {
     const newTheme = isDark ? lightTheme : darkTheme
-    setTheme(newTheme)
+    setTheme({ ...newTheme })
     const newIsDark = !isDark
     setIsDark(newIsDark)
     localStorage.setItem('theme', newIsDark ? 'dark' : 'light')
