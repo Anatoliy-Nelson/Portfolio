@@ -48,7 +48,7 @@ const loadRussianResources = async () => {
 
 // Инициализация i18next с предзагруженными русскими ресурсами
 const initI18n = async () => {
-  const russianResources = await loadRussianResources()
+ const russianResources = await loadRussianResources()
   
   await i18next
     .use(initReactI18next)
@@ -100,6 +100,7 @@ i18next.on('languageChanged', async (lng) => {
 })
 
 // Инициализируем i18n с предзагруженными русскими ресурсами при запуске
-initI18n()
+const i18nPromise = initI18n()
 
 export default i18next
+export { i18nPromise }
