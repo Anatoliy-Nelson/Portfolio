@@ -17,7 +17,7 @@ interface Theme {
  shadow: {
     main: string
     card: string
- }
+  }
   media: {
     xxs: string
     xs: string
@@ -35,27 +35,27 @@ interface Theme {
 
 interface ThemeContextType {
   theme: Theme
-  toggleTheme: () => void
+ toggleTheme: () => void
   isDark: boolean
 }
 
 const darkColors: ThemeColors = {
   primaryBg: '#0A192F',   // Темно-синий фон (профессиональный)
-  secondaryBg: '#11240', // Вторичный темно-синий фон
+  secondaryBg: '#112240', // Вторичный темно-синий фон
   accent: '#64FFDA',     // Акцентный цвет (бирюзовый)
   secondary: '#5CA6E0',  // Вторичный акцентный цвет (голубой)
   font: '#CCD6F6',       // Светло-серый шрифт
   fontSecondary: '#8892B0', // Вторичный цвет шрифта (серо-голубой)
- border: '#233554',     // Цвет границ
+  border: '#233554',     // Цвет границ
   hover: '#64FFDA',      // Цвет при наведении
 }
 
 const lightColors: ThemeColors = {
-  primaryBg: '#FFFFFF',   // Белый фон
+ primaryBg: '#FFFFFF',   // Белый фон
  secondaryBg: '#F8F9FA', // Светло-серый фон
   accent: '#0A192F',     // Темно-синий акцент
   secondary: '#64FFDA',  // Бирюзовый вторичный цвет
-  font: '#2D3748',       // Темно-серый шрифт
+ font: '#2D3748',       // Темно-серый шрифт
   fontSecondary: '#718096', // Вторичный цвет шрифта (светло-серый)
   border: '#E2E8F0',     // Светлый цвет границ
   hover: '#0A192F',      // Темно-синий при наведении
@@ -67,13 +67,13 @@ const shadow = {
 }
 
 const lightShadow = {
-  main: '0 2px 4px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0.1)',
+  main: '0 2px 4px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1)',
   card: '0 4px 16px rgba(0, 0, 0.1)',
 }
 
 const darkTheme: Theme = {
   colors: darkColors,
- shadow,
+  shadow,
   media: baseTheme.media,
   animations: baseTheme.animations,
 }
@@ -100,7 +100,7 @@ const getInitialIsDark = (): boolean => {
   
   if (savedTheme === 'light') return false
   if (savedTheme === 'dark') return true
-  return prefersDark
+ return prefersDark
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
@@ -115,7 +115,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light')
- }, [isDark])
+  }, [isDark])
 
   const toggleTheme = () => {
     const newTheme = isDark ? lightTheme : darkTheme
