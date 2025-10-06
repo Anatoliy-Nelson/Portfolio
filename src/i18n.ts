@@ -40,7 +40,7 @@ const loadLanguageResources = async (language: string): Promise<LanguageResource
 const loadRussianResources = async () => {
   const resources = await loadLanguageResources('ru')
   const ruResources: any = {}
-  Object.entries(resources).forEach(([namespace, resource]) => {
+ Object.entries(resources).forEach(([namespace, resource]) => {
     ruResources[namespace] = resource
   })
   return { ru: ruResources }
