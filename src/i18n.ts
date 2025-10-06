@@ -36,33 +36,49 @@ const loadLanguageResources = async (language: string): Promise<LanguageResource
   }
 }
 
-// Инициализация i18next
-i18next
-  .use(initReactI18next)
-  .use(LanguageDetector)
-  .init({
-    debug: false, // Отключаем debug в продакшене
-    fallbackLng: 'ru',
-    detection: {
-      order: ['localStorage', 'navigator'],
-      caches: ['localStorage'],
-    },
-    interpolation: {
-      escapeValue: false,
-    },
-    load: 'languageOnly',
-    // Инициализируем с пустыми ресурсами, которые будут загружаться динамически
-    resources: {},
+// Загружаем русские ресурсы перед инициализацией
+const loadRussianResources = async () => {
+  const resources = await loadLanguageResources('ru')
+  const ruResources: any = {}
+  Object.entries(resources).forEach(([namespace, resource]) => {
+    ruResources[namespace] = resource
   })
+  return { ru: ruResources }
+}
+
+// Инициализация i18next с предзагруженными русскими ресурсами
+const initI18n = async () => {
+  const russianResources = await loadRussianResources()
+  
+  await i18next
+    .use(initReactI18next)
+    .use(LanguageDetector)
+    .init({
+      debug: false, // Отключаем debug в продакшене
+      fallbackLng: 'ru',
+      detection: {
+        order: ['localStorage', 'navigator'],
+        caches: ['localStorage'],
+      },
+      interpolation: {
+        escapeValue: false,
+      },
+      load: 'languageOnly',
+      resources: russianResources,
+    })
+}
 
 // Загружаем ресурсы для текущего языка
 const initializeCurrentLanguage = async () => {
   const currentLng = i18next.language || 'ru'
-  try {
-    const resources = await loadLanguageResources(currentLng)
-    Object.entries(resources).forEach(([namespace, resource]) => {
-      i18next.addResourceBundle(currentLng, namespace, resource, true, true)
-    })
+ try {
+    // Проверяем, загружены ли уже ресурсы для этого языка
+    if (!i18next.hasResourceBundle(currentLng, 'header')) {
+      const resources = await loadLanguageResources(currentLng)
+      Object.entries(resources).forEach(([namespace, resource]) => {
+        i18next.addResourceBundle(currentLng, namespace, resource, true, true)
+      })
+    }
   } catch (error) {
     console.error(`Error loading resources for language ${currentLng}:`, error)
   }
@@ -70,7 +86,7 @@ const initializeCurrentLanguage = async () => {
 
 // Загружаем ресурсы при изменении языка
 i18next.on('languageChanged', async (lng) => {
-  try {
+ try {
     // Проверяем, загружены ли уже ресурсы для этого языка
     if (!i18next.hasResourceBundle(lng, 'header')) {
       const resources = await loadLanguageResources(lng)
@@ -83,7 +99,7 @@ i18next.on('languageChanged', async (lng) => {
   }
 })
 
-// Инициализируем текущий язык при запуске
-initializeCurrentLanguage()
+// Инициализируем i18n с предзагруженными русскими ресурсами при запуске
+initI18n()
 
 export default i18next
