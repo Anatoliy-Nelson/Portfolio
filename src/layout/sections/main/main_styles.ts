@@ -98,7 +98,8 @@ const ButtonWrapper = styled.div`
   display: flex;
   gap: 30px;
   flex-wrap: wrap;
-  align-content: start;
+  justify-content: center;
+  align-content: center;
   padding-top: 20px;
   width: 100%;
   ${Button} {
@@ -112,7 +113,6 @@ const ButtonWrapper = styled.div`
   }
  @media ${theme.media.mobile} {
     gap: 20px;
-    justify-content: center;
   }
   @media ${theme.media.xs} {
     gap: 15px;
