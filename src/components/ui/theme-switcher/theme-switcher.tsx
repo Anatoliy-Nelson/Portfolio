@@ -1,6 +1,5 @@
 import React from 'react'
 import { useTheme } from 'contexts/ThemeContext'
-import { Button } from 'components'
 
 export const ThemeSwitcher: React.FC = () => {
   const { toggleTheme, isDark } = useTheme()
@@ -23,8 +22,8 @@ export const ThemeSwitcher: React.FC = () => {
       <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
       <line x1="1" y1="12" x2="3" y2="12"></line>
       <line x1="21" y1="12" x2="23" y2="12"></line>
-      <line x1="4.2" y1="19.78" x2="5.64" y2="18.36"></line>
-      <line x1="18.36" y1="5.64" x2="19.78" y2="4.2"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
     </svg>
   )
 
@@ -44,12 +43,27 @@ export const ThemeSwitcher: React.FC = () => {
   )
 
   return (
-    <Button
-      variant="text"
+    <button
       onClick={toggleTheme}
       aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
+      style={{
+        width: '30px',
+        height: '30px',
+        borderRadius: '50%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontSize: '14px',
+        transition: 'all 0.3s ease-in-out',
+        backgroundColor: 'transparent',
+        cursor: 'pointer',
+        padding: '0',
+        margin: '0',
+        background: 'none',
+        border: 'none'
+      }}
     >
       {isDark ? <SunIcon /> : <MoonIcon />}
-    </Button>
+    </button>
   )
 }

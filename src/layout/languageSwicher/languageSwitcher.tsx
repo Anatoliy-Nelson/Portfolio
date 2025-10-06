@@ -59,10 +59,10 @@ export const LanguageSwitcher = () => {
 }
 
 const ThemeSwitcherWrapper = styled.div`
-  display: flex;
+ display: flex;
  align-items: center;
   justify-content: center;
-  margin-left: 10px;
+  margin-top: 5px;
   
   button {
     width: 30px;
@@ -76,13 +76,14 @@ const ThemeSwitcherWrapper = styled.div`
     background-color: transparent;
     border: 1px solid ${theme.colors.accent};
     color: ${theme.colors.accent};
+    cursor: pointer;
     
     &:hover {
       transform: scale(1.1);
       background-color: ${theme.colors.accent};
       color: ${theme.colors.primaryBg};
     }
-  }
+ }
 `
 
 const LanguageSwitcherStyled = styled.div`
@@ -92,6 +93,7 @@ const LanguageSwitcherStyled = styled.div`
   box-shadow: ${theme.shadow.main};
   border-radius: 10px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 5px;
   padding: 5px;
@@ -102,6 +104,6 @@ const LanguageSwitcherStyled = styled.div`
     top: 10px;
     left: 10px;
     z-index: 9999;
-    display: flex;
+    flex-direction: column;
   }
 `
