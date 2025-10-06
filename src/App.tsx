@@ -1,11 +1,12 @@
 import { Suspense, lazy, useState, useEffect } from 'react'
-import { ThemeProvider } from 'styled-components'
-import { theme } from 'styles/theme'
+import { ThemeProvider as StyledThemeProvider } from 'styled-components'
+import { ThemeProvider, useTheme } from 'contexts/ThemeContext'
+import { theme as baseTheme } from 'styles/theme'
 import useIsMobile from 'hooks/useIsMobile'
 
 // Компоненты, которые видны сразу, загружаем сразу
 import { Header, LanguageSwitcher, Main } from 'layout'
-import { Cursor, GoTopButton, Particle, PageTransition } from 'components'
+import { Cursor, GoTopButton, Particle, PageTransition, ThemeSwitcher } from 'components'
 
 // Ленивая загрузка компонентов, которые не видны сразу при загрузке
 const LazyAboutMe = lazy(() => import('./layout/sections/about-me/about-me').then(module => ({ default: module.AboutMe })))
@@ -20,56 +21,72 @@ const I18nInitializer = ({ children }: { children: React.ReactNode }) => {
   return <>{children}</>
 }
 
-function App() {
+// Компонент для отображения приложения с темой
+const AppWithTheme = () => {
+  const { theme } = useTheme()
   const isMobile = useIsMobile()
-   const [isMounted, setIsMounted] = useState(false)
+  const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
     setIsMounted(true)
   }, [])
 
+  // Объединяем тему из контекста с базовыми настройками
+  const fullTheme = { ...baseTheme, ...theme }
+
+  return (
+    <StyledThemeProvider theme={fullTheme}>
+      <Cursor isMobile={isMobile} />
+      <Particle />
+      <header role="banner">
+        <Header isMobile={isMobile} />
+      </header>
+      <div style={{ position: 'fixed', top: '20px', right: '20px', zIndex: 1000, display: 'flex', gap: '10px' }}>
+        <LanguageSwitcher />
+        <ThemeSwitcher />
+      </div>
+      <main role="main">
+        <PageTransition>
+          <Main />
+        </PageTransition>
+        {/* Загружаем остальные секции с задержкой для улучшения производительности */}
+        {isMounted && (
+          <Suspense fallback={<div style={{ height: '100px' }} />}>
+            <PageTransition>
+              <LazyAboutMe />
+            </PageTransition>
+            <PageTransition>
+              <LazySkills />
+            </PageTransition>
+            <PageTransition>
+              <LazyPortfolio />
+            </PageTransition>
+            <PageTransition>
+              <LazyContacts />
+            </PageTransition>
+          </Suspense>
+        )}
+      </main>
+      {isMounted && (
+        <Suspense fallback={null}>
+          <footer role="contentinfo">
+            <PageTransition>
+              <LazyFooter />
+            </PageTransition>
+          </footer>
+        </Suspense>
+      )}
+      <GoTopButton />
+    </StyledThemeProvider>
+  )
+}
+
+function App() {
   return (
     <Suspense fallback={<div>Загрузка...</div>}>
       <I18nInitializer>
-        <ThemeProvider theme={theme}>
-          <Cursor isMobile={isMobile} />
-          <Particle />
-          <header role="banner">
-            <Header isMobile={isMobile} />
-          </header>
-          <LanguageSwitcher />
-          <main role="main">
-            <PageTransition>
-              <Main />
-            </PageTransition>
-            {/* Загружаем остальные секции с задержкой для улучшения производительности */}
-            {isMounted && (
-              <Suspense fallback={<div style={{ height: '100px' }} />}>
-                <PageTransition>
-                  <LazyAboutMe />
-                </PageTransition>
-                <PageTransition>
-                  <LazySkills />
-                </PageTransition>
-                <PageTransition>
-                  <LazyPortfolio />
-                </PageTransition>
-                <PageTransition>
-                  <LazyContacts />
-                </PageTransition>
-              </Suspense>
-            )}
-          </main>
-          {isMounted && (
-            <Suspense fallback={null}>
-              <footer role="contentinfo">
-                <PageTransition>
-                  <LazyFooter />
-                </PageTransition>
-              </footer>
-            </Suspense>
-          )}
-          <GoTopButton />
+        <ThemeProvider>
+          <AppWithTheme />
         </ThemeProvider>
       </I18nInitializer>
     </Suspense>
