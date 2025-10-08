@@ -22,7 +22,7 @@ const I18nInitializer = ({ children }: { children: React.ReactNode }) => {
 
 // Компонент для отображения приложения с темой
 const AppWithTheme = () => {
-  const { theme, isDark } = useTheme()
+  const { theme } = useTheme()
  const isMobile = useIsMobile()
  const [isMounted, setIsMounted] = useState(false)
 

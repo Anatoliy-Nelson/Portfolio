@@ -119,40 +119,74 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
 
   const toggleTheme = () => {
     const newIsDark = !isDark
-    const newTheme = newIsDark ? darkTheme : lightTheme
     
-    setTheme({ ...newTheme })
-    setIsDark(newIsDark)
+    // Сохраняем новое состояние темы в localStorage
     localStorage.setItem('theme', newIsDark ? 'dark' : 'light')
     
-    // Обновляем CSS класс на body элементе
-    const body = document.body
+    // Обновляем CSS custom properties напрямую
+    const root = document.documentElement
     if (newIsDark) {
-      body.classList.remove('light-theme')
-      body.classList.add('dark-theme')
+      // Темная тема
+      root.style.setProperty('--color-primaryBg', '#0A192F')
+      root.style.setProperty('--color-secondaryBg', '#112240')
+      root.style.setProperty('--color-accent', '#64FFDA')
+      root.style.setProperty('--color-secondary', '#5CA6E0')
+      root.style.setProperty('--color-font', '#CCD6F6')
+      root.style.setProperty('--color-fontSecondary', '#8892B0')
+      root.style.setProperty('--color-border', '#233554')
+      root.style.setProperty('--color-hover', '#64FFDA')
+      root.style.setProperty('--shadow-main', '-1px -2px 2.6px 0px rgba(100, 255, 218, 0.2), 1px 4px 4px 0px rgba(35, 53, 84, 0.3)')
+      root.style.setProperty('--shadow-card', '0 8px 32px 0 rgba(35, 53, 84, 0.2)')
     } else {
-      body.classList.remove('dark-theme')
-      body.classList.add('light-theme')
+      // Светлая тема
+      root.style.setProperty('--color-primaryBg', '#FFFFFF')
+      root.style.setProperty('--color-secondaryBg', '#F8F9FA')
+      root.style.setProperty('--color-accent', '#0A192F')
+      root.style.setProperty('--color-secondary', '#64FFDA')
+      root.style.setProperty('--color-font', '#2D3748')
+      root.style.setProperty('--color-fontSecondary', '#718096')
+      root.style.setProperty('--color-border', '#E2E8F0')
+      root.style.setProperty('--color-hover', '#0A192F')
+      root.style.setProperty('--shadow-main', '0 2px 4px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1)')
+      root.style.setProperty('--shadow-card', '0 4px 16px rgba(0, 0, 0, 0.1)')
     }
     
-    // Также обновляем data-theme атрибут для обратной совместимости
-    document.documentElement.setAttribute('data-theme', newIsDark ? 'dark' : 'light')
+    // Обновляем состояние React
+    setIsDark(newIsDark)
   }
 
-  // Устанавливаем начальные CSS классы при инициализации
+  // Устанавливаем начальные CSS custom properties при инициализации
   useEffect(() => {
-    const body = document.body
+    const root = document.documentElement
     if (isDark) {
-      body.classList.remove('light-theme')
-      body.classList.add('dark-theme')
+      // Темная тема
+      root.style.setProperty('--color-primaryBg', '#0A192F')
+      root.style.setProperty('--color-secondaryBg', '#112240')
+      root.style.setProperty('--color-accent', '#64FFDA')
+      root.style.setProperty('--color-secondary', '#5CA6E0')
+      root.style.setProperty('--color-font', '#CCD6F6')
+      root.style.setProperty('--color-fontSecondary', '#8892B0')
+      root.style.setProperty('--color-border', '#233554')
+      root.style.setProperty('--color-hover', '#64FFDA')
+      root.style.setProperty('--shadow-main', '-1px -2px 2.6px 0px rgba(100, 255, 218, 0.2), 1px 4px 4px 0px rgba(35, 53, 84, 0.3)')
+      root.style.setProperty('--shadow-card', '0 8px 32px 0 rgba(35, 53, 84, 0.2)')
     } else {
-      body.classList.remove('dark-theme')
-      body.classList.add('light-theme')
+      // Светлая тема
+      root.style.setProperty('--color-primaryBg', '#FFFFFF')
+      root.style.setProperty('--color-secondaryBg', '#F8F9FA')
+      root.style.setProperty('--color-accent', '#0A192F')
+      root.style.setProperty('--color-secondary', '#64FFDA')
+      root.style.setProperty('--color-font', '#2D3748')
+      root.style.setProperty('--color-fontSecondary', '#718096')
+      root.style.setProperty('--color-border', '#E2E8F0')
+      root.style.setProperty('--color-hover', '#0A192F')
+      root.style.setProperty('--shadow-main', '0 2px 4px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1)')
+      root.style.setProperty('--shadow-card', '0 4px 16px rgba(0, 0, 0, 0.1)')
     }
     
     // Также устанавливаем data-theme атрибут
     document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light')
-  }, [])
+  }, [isDark])
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme, isDark }}>
