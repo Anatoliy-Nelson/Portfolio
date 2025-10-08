@@ -1,4 +1,4 @@
-import { Button, ThemeSwitcher } from 'components'
+import { Button } from 'components'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { theme } from 'styles/theme'
@@ -46,43 +46,12 @@ export const LanguageSwitcher = () => {
             >
               RU
             </Button>
-            <ThemeSwitcherWrapper>
-              <ThemeSwitcher />
-            </ThemeSwitcherWrapper>
           </LanguageSwitcherStyled>
         </motion.div>
       )}
     </AnimatePresence>
   )
 }
-
-const ThemeSwitcherWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 5px;
-  
-  button {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    transition: all 0.3s ease-in-out;
-    background-color: transparent;
-    border: 1px solid ${theme.colors.accent};
-    color: ${theme.colors.accent};
-    cursor: pointer;
-    
-    &:hover {
-      transform: scale(1.1);
-      background-color: ${theme.colors.accent};
-      color: ${theme.colors.primaryBg};
-    }
-  }
-`
 
 const LanguageSwitcherStyled = styled.div`
   position: absolute;
