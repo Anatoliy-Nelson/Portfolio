@@ -1,4 +1,4 @@
-import { Button } from 'components'
+import { Button, ThemeSwitcher } from 'components'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { theme } from 'styles/theme'
@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 
 export const LanguageSwitcher = () => {
-  const [selectedLanguage, setSelectedLanguage] = useState('en')
+ const [selectedLanguage, setSelectedLanguage] = useState('en')
   const [isShowButton, setIsShowButton] = useState(true)
 
   useEffect(() => {
@@ -46,6 +46,9 @@ export const LanguageSwitcher = () => {
             >
               RU
             </Button>
+            <ThemeSwitcherWrapper>
+              <ThemeSwitcher />
+            </ThemeSwitcherWrapper>
           </LanguageSwitcherStyled>
         </motion.div>
       )}
@@ -53,12 +56,45 @@ export const LanguageSwitcher = () => {
   )
 }
 
+const ThemeSwitcherWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5px;
+  
+  button {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: all 0.3s ease-in-out;
+    background-color: transparent;
+    border: 1px solid ${theme.colors.accent};
+    color: ${theme.colors.accent};
+    cursor: pointer;
+    
+    &:hover {
+      transform: scale(1.1);
+      background-color: ${theme.colors.accent};
+      color: ${theme.colors.primaryBg};
+    }
+  }
+`
+
 const LanguageSwitcherStyled = styled.div`
   position: absolute;
   top: 120px;
   right: 10px;
   box-shadow: ${theme.shadow.main};
   border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 5px;
 
   z-index: 9998;
   @media ${theme.media.tablet} {
@@ -66,6 +102,6 @@ const LanguageSwitcherStyled = styled.div`
     top: 10px;
     left: 10px;
     z-index: 9999;
-    display: flex;
+    flex-direction: column;
   }
 `

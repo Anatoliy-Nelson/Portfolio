@@ -1,6 +1,7 @@
 export * from './layout/flex-wrapper'
 export * from './burger-button'
 export * from './ui/button'
+export * from './ui/theme-switcher'
 export * from './forms/contacts-form'
 export * from './layout/container'
 export * from './forms/field'
