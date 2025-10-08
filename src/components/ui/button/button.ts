@@ -9,21 +9,21 @@ type Props = {
 
 export const Button = styled.button<Props>`
   position: relative;
-  background-color: ${theme.colors.accent};
+  background-color: var(--color-accent);
   padding: 12px 26px;
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 12px;
-  ${font({ color: theme.colors.primaryBg, weight: 700, max: 18, min: 14 })};
+  ${font({ color: 'var(--color-primaryBg)', weight: 700, max: 18, min: 14 })};
 
   a {
-    color: ${theme.colors.primaryBg};
+    color: var(--color-primaryBg);
   }
   &:hover {
     transform: scale(1.05);
-    box-shadow: ${theme.shadow.main};
+    box-shadow: var(--shadow-main);
     transition: ${theme.animations.transitions};
   }
 
@@ -31,10 +31,10 @@ export const Button = styled.button<Props>`
     props.variant === 'outlined' &&
     css<Props>`
       background-color: transparent;
-      outline: 2px solid ${theme.colors.accent};
+      outline: 2px solid var(--color-accent);
 
       a {
-        color: ${theme.colors.accent};
+        color: var(--color-accent);
       }
     `}
   @media ${theme.media.tablet} {
@@ -48,9 +48,9 @@ export const Button = styled.button<Props>`
       background-color: transparent;
       font-size: 18px;
       padding: 8px;
-      color: ${theme.colors.font};
+      color: var(--color-font);
       &:active {
-        color: ${theme.colors.accent};
+        color: var(--color-accent);
       }
       @media ${theme.media.tablet} {
         font-size: 16px;
@@ -59,6 +59,6 @@ export const Button = styled.button<Props>`
   ${(props) =>
     props.active === true &&
     css<Props>`
-      color: ${theme.colors.accent};
+      color: var(--color-accent);
     `}
 `

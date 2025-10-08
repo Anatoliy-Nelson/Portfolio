@@ -6,7 +6,38 @@ import '@fontsource/plus-jakarta-sans/500.css'
 import '@fontsource/plus-jakarta-sans/700.css'
 import '@fontsource/plus-jakarta-sans/800.css'
 
+// Устанавливаем CSS переменные по умолчанию (темная тема)
+const defaultColors = {
+  primaryBg: '#0A192F',
+  secondaryBg: '#112240', 
+ accent: '#64FFDA',
+  secondary: '#5CA6E0',
+  font: '#CCD6F6',
+  fontSecondary: '#8892B0',
+  border: '#233554',
+  hover: '#64FFDA',
+}
+
+const defaultShadows = {
+ main: '-1px -2px 2.6px 0px rgba(100, 255, 218, 0.2), 1px 4px 4px 0px rgba(35, 53, 84, 0.3)',
+  card: '0 8px 32px 0 rgba(35, 53, 84, 0.2)',
+}
+
 export const GlobalStyles = createGlobalStyle`
+    :root {
+      /* Устанавливаем CSS переменные по умолчанию (темная тема) */
+      --color-primaryBg: ${defaultColors.primaryBg};
+      --color-secondaryBg: ${defaultColors.secondaryBg};
+      --color-accent: ${defaultColors.accent};
+      --color-secondary: ${defaultColors.secondary};
+      --color-font: ${defaultColors.font};
+      --color-fontSecondary: ${defaultColors.fontSecondary};
+      --color-border: ${defaultColors.border};
+      --color-hover: ${defaultColors.hover};
+      --shadow-main: ${defaultShadows.main};
+      --shadow-card: ${defaultShadows.card};
+    }
+    
     *, *::before, *::after {
         margin: 0;
         padding: 0;
@@ -31,8 +62,8 @@ export const GlobalStyles = createGlobalStyle`
         select:-webkit-autofill,
         select:-webkit-autofill:hover,
         select:-webkit-autofill:focus {
-            -webkit-text-fill-color: ${theme.colors.font};
-            -webkit-box-shadow: 0 0 0 1000px ${theme.colors.secondaryBg} inset;
+            -webkit-text-fill-color: var(--color-font);
+            -webkit-box-shadow: 0 0 0 1000px var(--color-secondaryBg) inset;
             transition: background-color 5000s ease-in-out 0s;
             background: -webkit-linear-gradient(
                     rgba(255, 255, 255, 0) 0%,
@@ -45,17 +76,17 @@ export const GlobalStyles = createGlobalStyle`
 
     body {
         font-family: 'Plus Jakarta Sans', sans-serif;
-        color: ${theme.colors.font};
+        color: var(--color-font);
         line-height: 1.2;
 
         &:focus-visible {
-            outline: 1px solid ${theme.colors.font};
+            outline: 1px solid var(--color-font);
         }
     }
 
     a {
         text-decoration: none;
-        color: ${theme.colors.font};
+        color: var(--color-font);
     }
 
     ul {
@@ -66,7 +97,7 @@ export const GlobalStyles = createGlobalStyle`
         all: unset;
 
         &:focus-visible {
-            outline: 1px solid ${theme.colors.font};
+            outline: 1px solid var(--color-font);
         }
     }
 
@@ -78,11 +109,11 @@ export const GlobalStyles = createGlobalStyle`
     }
 
     section:nth-last-of-type(odd) {
-        background-color: ${theme.colors.primaryBg};
+        background-color: var(--color-primaryBg);
     }
 
     section:nth-last-of-type(even) {
-        background-color: ${theme.colors.secondaryBg};
+        background-color: var(--color-secondaryBg);
     }
 
 `

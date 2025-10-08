@@ -118,12 +118,35 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   }, [isDark])
 
   const toggleTheme = () => {
-    const newTheme = isDark ? lightTheme : darkTheme
-    setTheme({ ...newTheme })
     const newIsDark = !isDark
+    const newTheme = newIsDark ? darkTheme : lightTheme
+    
+    setTheme({ ...newTheme })
     setIsDark(newIsDark)
     localStorage.setItem('theme', newIsDark ? 'dark' : 'light')
+    
+    // Обновляем CSS переменные для всех цветов темы
+    const root = document.documentElement
+    Object.entries(newTheme.colors).forEach(([key, value]) => {
+      root.style.setProperty(`--color-${key}`, value as string)
+    })
+    Object.entries(newTheme.shadow).forEach(([key, value]) => {
+      root.style.setProperty(`--shadow-${key}`, value as string)
+    })
   }
+
+  // Устанавливаем начальные CSS переменные при инициализации
+  useEffect(() => {
+    const root = document.documentElement
+    const currentTheme = isDark ? darkTheme : lightTheme
+    
+    Object.entries(currentTheme.colors).forEach(([key, value]) => {
+      root.style.setProperty(`--color-${key}`, value as string)
+    })
+    Object.entries(currentTheme.shadow).forEach(([key, value]) => {
+      root.style.setProperty(`--shadow-${key}`, value as string)
+    })
+  }, [])
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme, isDark }}>

@@ -25,19 +25,13 @@ const AppWithTheme = () => {
   const { theme, isDark } = useTheme()
  const isMobile = useIsMobile()
  const [isMounted, setIsMounted] = useState(false)
-  const [rerenderKey, setRerenderKey] = useState(0)
 
   useEffect(() => {
     setIsMounted(true)
   }, [])
 
-  // При изменении темы обновляем ключ для перерендеринга
- useEffect(() => {
-    setRerenderKey(prev => prev + 1)
-  }, [isDark])
-
   return (
-    <StyledThemeProvider theme={theme} key={rerenderKey}>
+    <StyledThemeProvider theme={theme}>
       <Cursor isMobile={isMobile} />
       <Particle />
       <header role="banner">
