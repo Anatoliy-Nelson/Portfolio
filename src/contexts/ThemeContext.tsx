@@ -125,27 +125,33 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     setIsDark(newIsDark)
     localStorage.setItem('theme', newIsDark ? 'dark' : 'light')
     
-    // Обновляем CSS переменные для всех цветов темы
-    const root = document.documentElement
-    Object.entries(newTheme.colors).forEach(([key, value]) => {
-      root.style.setProperty(`--color-${key}`, value as string)
-    })
-    Object.entries(newTheme.shadow).forEach(([key, value]) => {
-      root.style.setProperty(`--shadow-${key}`, value as string)
-    })
+    // Обновляем CSS класс на body элементе
+    const body = document.body
+    if (newIsDark) {
+      body.classList.remove('light-theme')
+      body.classList.add('dark-theme')
+    } else {
+      body.classList.remove('dark-theme')
+      body.classList.add('light-theme')
+    }
+    
+    // Также обновляем data-theme атрибут для обратной совместимости
+    document.documentElement.setAttribute('data-theme', newIsDark ? 'dark' : 'light')
   }
 
-  // Устанавливаем начальные CSS переменные при инициализации
+  // Устанавливаем начальные CSS классы при инициализации
   useEffect(() => {
-    const root = document.documentElement
-    const currentTheme = isDark ? darkTheme : lightTheme
+    const body = document.body
+    if (isDark) {
+      body.classList.remove('light-theme')
+      body.classList.add('dark-theme')
+    } else {
+      body.classList.remove('dark-theme')
+      body.classList.add('light-theme')
+    }
     
-    Object.entries(currentTheme.colors).forEach(([key, value]) => {
-      root.style.setProperty(`--color-${key}`, value as string)
-    })
-    Object.entries(currentTheme.shadow).forEach(([key, value]) => {
-      root.style.setProperty(`--shadow-${key}`, value as string)
-    })
+    // Также устанавливаем data-theme атрибут
+    document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light')
   }, [])
 
   return (

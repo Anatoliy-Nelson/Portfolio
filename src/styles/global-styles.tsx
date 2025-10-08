@@ -6,36 +6,47 @@ import '@fontsource/plus-jakarta-sans/500.css'
 import '@fontsource/plus-jakarta-sans/700.css'
 import '@fontsource/plus-jakarta-sans/800.css'
 
-// Устанавливаем CSS переменные по умолчанию (темная тема)
-const defaultColors = {
-  primaryBg: '#0A192F',
-  secondaryBg: '#112240', 
- accent: '#64FFDA',
-  secondary: '#5CA6E0',
-  font: '#CCD6F6',
-  fontSecondary: '#8892B0',
-  border: '#233554',
-  hover: '#64FFDA',
-}
-
-const defaultShadows = {
- main: '-1px -2px 2.6px 0px rgba(100, 255, 218, 0.2), 1px 4px 4px 0px rgba(35, 53, 84, 0.3)',
-  card: '0 8px 32px 0 rgba(35, 53, 84, 0.2)',
-}
-
 export const GlobalStyles = createGlobalStyle`
-    :root {
-      /* Устанавливаем CSS переменные по умолчанию (темная тема) */
-      --color-primaryBg: ${defaultColors.primaryBg};
-      --color-secondaryBg: ${defaultColors.secondaryBg};
-      --color-accent: ${defaultColors.accent};
-      --color-secondary: ${defaultColors.secondary};
-      --color-font: ${defaultColors.font};
-      --color-fontSecondary: ${defaultColors.fontSecondary};
-      --color-border: ${defaultColors.border};
-      --color-hover: ${defaultColors.hover};
-      --shadow-main: ${defaultShadows.main};
-      --shadow-card: ${defaultShadows.card};
+    /* Темная тема по умолчанию */
+    body.dark-theme {
+      --color-primaryBg: #0A192F;
+      --color-secondaryBg: #112240;
+      --color-accent: #64FFDA;
+      --color-secondary: #5CA6E0;
+      --color-font: #CCD6F6;
+      --color-fontSecondary: #8892B0;
+      --color-border: #233554;
+      --color-hover: #64FFDA;
+      --shadow-main: -1px -2px 2.6px 0px rgba(100, 255, 218, 0.2), 1px 4px 4px 0px rgba(35, 53, 84, 0.3);
+      --shadow-card: 0 8px 32px 0 rgba(35, 53, 84, 0.2);
+    }
+    
+    /* Светлая тема */
+    body.light-theme {
+      --color-primaryBg: #FFFFFF;
+      --color-secondaryBg: #F8F9FA;
+      --color-accent: #0A192F;
+      --color-secondary: #64FFDA;
+      --color-font: #2D3748;
+      --color-fontSecondary: #718096;
+      --color-border: #E2E8F0;
+      --color-hover: #0A192F;
+      --shadow-main: 0 2px 4px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1);
+      --shadow-card: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Устанавливаем тему по умолчанию (темная) */
+    body {
+      --color-primaryBg: #0A192F;
+      --color-secondaryBg: #112240;
+      --color-accent: #64FFDA;
+      --color-secondary: #5CA6E0;
+      --color-font: #CCD6F6;
+      --color-fontSecondary: #8892B0;
+      --color-border: #233554;
+      --color-hover: #64FFDA;
+      --shadow-main: -1px -2px 2.6px 0px rgba(100, 255, 218, 0.2), 1px 4px 4px 0px rgba(35, 53, 84, 0.3);
+      --shadow-card: 0 8px 32px 0 rgba(35, 53, 84, 0.2);
     }
     
     *, *::before, *::after {
@@ -78,6 +89,7 @@ export const GlobalStyles = createGlobalStyle`
         font-family: 'Plus Jakarta Sans', sans-serif;
         color: var(--color-font);
         line-height: 1.2;
+        background-color: var(--color-primaryBg);
 
         &:focus-visible {
             outline: 1px solid var(--color-font);
