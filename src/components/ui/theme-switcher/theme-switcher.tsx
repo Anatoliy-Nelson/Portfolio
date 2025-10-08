@@ -3,6 +3,12 @@ import { useTheme } from 'contexts/ThemeContext'
 
 export const ThemeSwitcher: React.FC = () => {
   const { toggleTheme, isDark } = useTheme()
+  
+  const handleClick = () => {
+    console.log('ThemeSwitcher clicked, current isDark:', isDark)
+    toggleTheme()
+    console.log('ThemeSwitcher after toggleTheme, new isDark should be:', !isDark)
+  }
 
   const SunIcon = () => (
     <svg
@@ -44,7 +50,7 @@ export const ThemeSwitcher: React.FC = () => {
 
   return (
     <button
-      onClick={toggleTheme}
+      onClick={handleClick}
       aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
       style={{
         width: '30px',

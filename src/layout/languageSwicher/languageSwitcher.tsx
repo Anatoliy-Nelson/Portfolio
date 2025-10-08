@@ -74,23 +74,23 @@ const ThemeSwitcherWrapper = styled.div`
     font-size: 14px;
     transition: all 0.3s ease-in-out;
     background-color: transparent;
-    border: 1px solid ${theme.colors.accent};
-    color: ${theme.colors.accent};
+    border: 1px solid var(--color-accent);
+    color: var(--color-accent);
     cursor: pointer;
     
     &:hover {
       transform: scale(1.1);
-      background-color: ${theme.colors.accent};
-      color: ${theme.colors.primaryBg};
+      background-color: var(--color-accent);
+      color: var(--color-primaryBg);
     }
- }
+  }
 `
 
 const LanguageSwitcherStyled = styled.div`
   position: absolute;
   top: 120px;
   right: 10px;
-  box-shadow: ${theme.shadow.main};
+  box-shadow: var(--shadow-main);
   border-radius: 10px;
   display: flex;
   flex-direction: column;
