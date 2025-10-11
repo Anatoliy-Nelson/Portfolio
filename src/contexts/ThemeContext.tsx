@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react'
+import React, { createContext, useContext, ReactNode, useEffect } from 'react'
 import { theme as baseTheme } from 'styles/theme'
 
 interface ThemeColors {
@@ -9,12 +9,12 @@ interface ThemeColors {
   font: string
   fontSecondary: string
   border: string
- hover: string
+  hover: string
 }
 
 interface Theme {
   colors: ThemeColors
- shadow: {
+  shadow: {
     main: string
     card: string
   }
@@ -35,8 +35,6 @@ interface Theme {
 
 interface ThemeContextType {
   theme: Theme
- toggleTheme: () => void
-  isDark: boolean
 }
 
 const darkColors: ThemeColors = {
@@ -50,25 +48,9 @@ const darkColors: ThemeColors = {
   hover: '#64FFDA',      // Цвет при наведении
 }
 
-const lightColors: ThemeColors = {
- primaryBg: '#FFFFFF',   // Белый фон
- secondaryBg: '#F8F9FA', // Светло-серый фон
-  accent: '#0A192F',     // Темно-синий акцент
-  secondary: '#64FFDA',  // Бирюзовый вторичный цвет
- font: '#2D3748',       // Темно-серый шрифт
-  fontSecondary: '#718096', // Вторичный цвет шрифта (светло-серый)
-  border: '#E2E8F0',     // Светлый цвет границ
-  hover: '#0A192F',      // Темно-синий при наведении
-}
-
 const shadow = {
   main: '-1px -2px 2.6px 0px rgba(100, 255, 218, 0.2), 1px 4px 4px 0px rgba(35, 53, 84, 0.3)',
-  card: '0 8px 32px 0 rgba(35, 53, 84, 0.2)',
-}
-
-const lightShadow = {
-  main: '0 2px 4px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1)',
-  card: '0 4px 16px rgba(0, 0, 0.1)',
+ card: '0 8px 32px 0 rgba(35, 53, 84, 0.2)',
 }
 
 const darkTheme: Theme = {
@@ -78,31 +60,6 @@ const darkTheme: Theme = {
   animations: baseTheme.animations,
 }
 
-const lightTheme: Theme = {
-  colors: lightColors,
-  shadow: lightShadow,
-  media: baseTheme.media,
-  animations: baseTheme.animations,
-}
-
-const getInitialTheme = (): Theme => {
-  const savedTheme = localStorage.getItem('theme')
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-  
-  if (savedTheme === 'light') return lightTheme
-  if (savedTheme === 'dark') return darkTheme
-  return prefersDark ? darkTheme : lightTheme
-}
-
-const getInitialIsDark = (): boolean => {
-  const savedTheme = localStorage.getItem('theme')
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-  
-  if (savedTheme === 'light') return false
-  if (savedTheme === 'dark') return true
- return prefersDark
-}
-
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
 interface ThemeProviderProps {
@@ -110,86 +67,28 @@ interface ThemeProviderProps {
 }
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
-  const [theme, setTheme] = useState<Theme>(getInitialTheme)
-  const [isDark, setIsDark] = useState<boolean>(getInitialIsDark)
-
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light')
-  }, [isDark])
-
-  const toggleTheme = () => {
-    const newIsDark = !isDark
+    // Устанавливаем CSS-переменные для темной темы
+    const root = document.documentElement;
     
-    // Сохраняем новое состояние темы в localStorage
-    localStorage.setItem('theme', newIsDark ? 'dark' : 'light')
+    // Устанавливаем переменные для темной темы
+    Object.entries(darkTheme.colors).forEach(([key, value]) => {
+      root.style.setProperty(`--color-${key}`, value as string);
+    });
     
-    // Обновляем CSS custom properties напрямую
-    const root = document.documentElement
-    if (newIsDark) {
-      // Темная тема
-      root.style.setProperty('--color-primaryBg', '#0A192F')
-      root.style.setProperty('--color-secondaryBg', '#112240')
-      root.style.setProperty('--color-accent', '#64FFDA')
-      root.style.setProperty('--color-secondary', '#5CA6E0')
-      root.style.setProperty('--color-font', '#CCD6F6')
-      root.style.setProperty('--color-fontSecondary', '#8892B0')
-      root.style.setProperty('--color-border', '#233554')
-      root.style.setProperty('--color-hover', '#64FFDA')
-      root.style.setProperty('--shadow-main', '-1px -2px 2.6px 0px rgba(100, 255, 218, 0.2), 1px 4px 4px 0px rgba(35, 53, 84, 0.3)')
-      root.style.setProperty('--shadow-card', '0 8px 32px 0 rgba(35, 53, 84, 0.2)')
-    } else {
-      // Светлая тема
-      root.style.setProperty('--color-primaryBg', '#FFFFFF')
-      root.style.setProperty('--color-secondaryBg', '#F8F9FA')
-      root.style.setProperty('--color-accent', '#0A192F')
-      root.style.setProperty('--color-secondary', '#64FFDA')
-      root.style.setProperty('--color-font', '#2D3748')
-      root.style.setProperty('--color-fontSecondary', '#718096')
-      root.style.setProperty('--color-border', '#E2E8F0')
-      root.style.setProperty('--color-hover', '#0A192F')
-      root.style.setProperty('--shadow-main', '0 2px 4px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1)')
-      root.style.setProperty('--shadow-card', '0 4px 16px rgba(0, 0, 0, 0.1)')
-    }
+    Object.entries(darkTheme.shadow).forEach(([key, value]) => {
+      root.style.setProperty(`--shadow-${key}`, value as string);
+    });
     
-    // Обновляем состояние React
-    setIsDark(newIsDark)
-  }
-
-  // Устанавливаем начальные CSS custom properties при инициализации
-  useEffect(() => {
-    const root = document.documentElement
-    if (isDark) {
-      // Темная тема
-      root.style.setProperty('--color-primaryBg', '#0A192F')
-      root.style.setProperty('--color-secondaryBg', '#112240')
-      root.style.setProperty('--color-accent', '#64FFDA')
-      root.style.setProperty('--color-secondary', '#5CA6E0')
-      root.style.setProperty('--color-font', '#CCD6F6')
-      root.style.setProperty('--color-fontSecondary', '#8892B0')
-      root.style.setProperty('--color-border', '#233554')
-      root.style.setProperty('--color-hover', '#64FFDA')
-      root.style.setProperty('--shadow-main', '-1px -2px 2.6px 0px rgba(100, 255, 218, 0.2), 1px 4px 4px 0px rgba(35, 53, 84, 0.3)')
-      root.style.setProperty('--shadow-card', '0 8px 32px 0 rgba(35, 53, 84, 0.2)')
-    } else {
-      // Светлая тема
-      root.style.setProperty('--color-primaryBg', '#FFFFFF')
-      root.style.setProperty('--color-secondaryBg', '#F8F9FA')
-      root.style.setProperty('--color-accent', '#0A192F')
-      root.style.setProperty('--color-secondary', '#64FFDA')
-      root.style.setProperty('--color-font', '#2D3748')
-      root.style.setProperty('--color-fontSecondary', '#718096')
-      root.style.setProperty('--color-border', '#E2E8F0')
-      root.style.setProperty('--color-hover', '#0A192F')
-      root.style.setProperty('--shadow-main', '0 2px 4px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1)')
-      root.style.setProperty('--shadow-card', '0 4px 16px rgba(0, 0, 0, 0.1)')
-    }
+    // Устанавливаем transitions
+    root.style.setProperty('--transitions', darkTheme.animations.transitions as string);
     
-    // Также устанавливаем data-theme атрибут
-    document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light')
-  }, [isDark])
+    // Устанавливаем data-theme атрибут для темной темы
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }, []);
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme, isDark }}>
+    <ThemeContext.Provider value={{ theme: darkTheme }}>
       {children}
     </ThemeContext.Provider>
   )

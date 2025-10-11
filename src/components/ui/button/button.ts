@@ -24,7 +24,7 @@ export const Button = styled.button<Props>`
   &:hover {
     transform: scale(1.05);
     box-shadow: var(--shadow-main);
-    transition: ${theme.animations.transitions};
+    transition: var(--transitions);
   }
 
   ${(props) =>

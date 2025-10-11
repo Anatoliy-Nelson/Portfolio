@@ -19,20 +19,7 @@ export const GlobalStyles = createGlobalStyle`
       --color-hover: #64FFDA;
       --shadow-main: -1px -2px 2.6px 0px rgba(100, 255, 218, 0.2), 1px 4px 4px 0px rgba(35, 53, 84, 0.3);
       --shadow-card: 0 8px 32px 0 rgba(35, 53, 84, 0.2);
-    }
-    
-    /* Светлая тема */
-    body.light-theme {
-      --color-primaryBg: #FFFFFF;
-      --color-secondaryBg: #F8F9FA;
-      --color-accent: #0A192F;
-      --color-secondary: #64FFDA;
-      --color-font: #2D3748;
-      --color-fontSecondary: #718096;
-      --color-border: #E2E8F0;
-      --color-hover: #0A192F;
-      --shadow-main: 0 2px 4px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1);
-      --shadow-card: 0 4px 16px rgba(0, 0, 0, 0.1);
+      --transitions: 0.3s ease-in-out;
     }
     
     /* Устанавливаем тему по умолчанию (темная) */
@@ -47,6 +34,7 @@ export const GlobalStyles = createGlobalStyle`
       --color-hover: #64FFDA;
       --shadow-main: -1px -2px 2.6px 0px rgba(100, 255, 218, 0.2), 1px 4px 4px 0px rgba(35, 53, 84, 0.3);
       --shadow-card: 0 8px 32px 0 rgba(35, 53, 84, 0.2);
+      --transitions: 0.3s ease-in-out;
     }
     
     *, *::before, *::after {

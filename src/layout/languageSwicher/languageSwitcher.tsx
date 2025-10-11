@@ -1,16 +1,14 @@
-import { Button, ThemeSwitcher } from 'components'
+import { Button } from 'components'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { theme } from 'styles/theme'
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { useTheme } from 'contexts/ThemeContext'
 
 export const LanguageSwitcher = () => {
  const [selectedLanguage, setSelectedLanguage] = useState('en')
-  const [isShowButton, setIsShowButton] = useState(true)
-  const { i18n } = useTranslation()
-  const { isDark } = useTheme()
+ const [isShowButton, setIsShowButton] = useState(true)
+ const { i18n } = useTranslation()
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
@@ -48,9 +46,6 @@ export const LanguageSwitcher = () => {
             >
               RU
             </Button>
-            <ThemeSwitcherWrapper>
-              <ThemeSwitcher />
-            </ThemeSwitcherWrapper>
           </LanguageSwitcherStyled>
         </motion.div>
       )}
@@ -58,33 +53,6 @@ export const LanguageSwitcher = () => {
   )
 }
 
-const ThemeSwitcherWrapper = styled.div`
- display: flex;
- align-items: center;
-  justify-content: center;
-  margin-top: 5px;
-  
-  button {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    transition: all 0.3s ease-in-out;
-    background-color: transparent;
-    border: 1px solid var(--color-accent);
-    color: var(--color-accent);
-    cursor: pointer;
-    
-    &:hover {
-      transform: scale(1.1);
-      background-color: var(--color-accent);
-      color: var(--color-primaryBg);
-    }
-  }
-`
 
 const LanguageSwitcherStyled = styled.div`
   position: absolute;

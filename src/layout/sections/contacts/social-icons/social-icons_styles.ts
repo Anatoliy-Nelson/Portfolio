@@ -14,16 +14,16 @@ const IconsList = styled.ul`
 const Icon = styled.li`
   &:hover {
     transform: scale(1.4);
-    transition: ${theme.animations.transitions};
+    transition: var(--transitions);
   }
 `
 
 const Link = styled.a`
-  color: ${theme.colors.accent};
-
+  color: var(--color-accent);
+ 
   &:hover {
-    color: ${theme.colors.font};
-    transition: ${theme.animations.transitions};
+    color: var(--color-font);
+    transition: var(--transitions);
   }
 `
 export const S = { Icon, IconsList, Link }

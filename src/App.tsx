@@ -22,8 +22,8 @@ const I18nInitializer = ({ children }: { children: React.ReactNode }) => {
 
 // Компонент для отображения приложения с темой
 const AppWithTheme = () => {
-  const { theme, isDark, toggleTheme } = useTheme()
- const isMobile = useIsMobile()
+  const { theme } = useTheme()
+  const isMobile = useIsMobile()
  const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
@@ -32,29 +32,6 @@ const AppWithTheme = () => {
 
   return (
     <StyledThemeProvider theme={theme}>
-      {/* Тестовый компонент для проверки переключения темы */}
-      <button
-        onClick={() => {
-          console.log('Test button clicked, current isDark:', isDark)
-          toggleTheme()
-          console.log('Test button after toggle, new isDark should be:', !isDark)
-        }}
-        style={{
-          position: 'fixed',
-          top: '10px',
-          left: '10px',
-          zIndex: 9999,
-          padding: '10px',
-          backgroundColor: 'red',
-          color: 'white',
-          border: 'none',
-          borderRadius: '5px',
-          cursor: 'pointer'
-        }}
-      >
-        Test Toggle Theme (Current: {isDark ? 'Dark' : 'Light'})
-      </button>
-      
       <Cursor isMobile={isMobile} />
       <Particle />
       <header role="banner">

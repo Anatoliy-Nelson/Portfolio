@@ -3,11 +3,11 @@ import { theme } from 'styles/theme'
 import { font } from 'styles/common'
 
 const Project = styled.div`
-  background-color: ${theme.colors.primaryBg};
+  background-color: var(--color-primaryBg);
   border-radius: 24px;
   max-width: 500px;
   width: 370px;
-  box-shadow: ${theme.shadow.main};
+  box-shadow: var(--shadow-main);
   flex-grow: 1;
   padding-bottom: 20px;
   margin-bottom: 20px;
@@ -46,7 +46,7 @@ const ImageWrapper = styled.div`
   &:hover {
     &::before {
       opacity: 1;
-      transition: ${theme.animations.transitions};
+      transition: var(--transitions);
     }
 
     ${ButtonWrapper} {
@@ -72,7 +72,7 @@ const InfoWrapper = styled.div`
 `
 
 const Title = styled.h3`
-  ${font({ color: theme.colors.accent, weight: 700, max: 26, min: 20, lineHeight: 0.9 })};
+  ${font({ color: 'var(--color-accent)', weight: 700, max: 26, min: 20, lineHeight: 0.9 })};
 `
 
 const Description = styled.p`
@@ -94,10 +94,10 @@ const Link = styled.a`
   position: absolute;
   bottom: 20px;
   left: 20px;
-  ${font({ color: theme.colors.accent, max: 16, min: 14 })};
+  ${font({ color: 'var(--color-accent)', max: 16, min: 14 })};
   &:hover {
     letter-spacing: 2px;
-    transition: ${theme.animations.transitions};
+    transition: var(--transitions);
   }
 `
 

@@ -30,7 +30,7 @@ const MenuPopup = styled.div<{ isOpen: boolean }>`
   align-items: center;
   justify-content: center;
   transform: translateY(-100%);
-  transition: ${theme.animations.transitions};
+  transition: var(--transitions);
   ${(props) =>
     props.isOpen &&
     css<{ isOpen: boolean }>`
@@ -62,16 +62,16 @@ const NavList = styled.ul`
 `
 
 const NavLink = styled(Link)`
-  color: ${theme.colors.accent};
+  color: var(--color-accent);
   font-size: 18px;
   line-height: 1;
   font-weight: 500;
 
   &:hover,
   &.active {
-    color: ${theme.colors.font};
+    color: var(--color-font);
     letter-spacing: 2px;
-    transition: ${theme.animations.transitions};
+    transition: var(--transitions);
   }
 `
 

@@ -18,8 +18,8 @@ const IconWrapper = styled.div`
   width: 100px;
   height: 100px;
   border-radius: 100%;
-  box-shadow: ${theme.shadow.main};
-  background-color: ${theme.colors.primaryBg};
+  box-shadow: var(--shadow-main);
+  background-color: var(--color-primaryBg);
   z-index: 10;
 `
 

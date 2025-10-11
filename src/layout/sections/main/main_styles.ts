@@ -67,7 +67,7 @@ const Photo = styled.img`
   width: 100%;
   object-fit: cover;
   border-radius: 24px;
-  box-shadow: ${theme.shadow.main};
+  box-shadow: var(--shadow-main);
   @media ${theme.media.mobile} {
     max-width: 300px;
   }
@@ -77,7 +77,7 @@ const Photo = styled.img`
 `
 
 const Name = styled.h2`
-  ${font({ color: theme.colors.accent, weight: 800, max: 50, min: 34 })};
+  ${font({ color: 'var(--color-accent)', weight: 800, max: 50, min: 34 })};
   @media ${theme.media.xs} {
     font-size: clamp(28px, 6vw, 34px);
  }
@@ -104,7 +104,7 @@ const ButtonWrapper = styled.div`
   width: 100%;
   ${Button} {
     &:last-child {
-      background-color: ${theme.colors.primaryBg};
+      background-color: var(--color-primaryBg);
     }
   }
 

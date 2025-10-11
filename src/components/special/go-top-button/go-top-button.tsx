@@ -23,7 +23,7 @@ export const GoTopButton = () => {
 
 const StyledGoTopButton = styled.button`
   position: fixed;
-  background-color: ${theme.colors.primaryBg};
+  background-color: var(--color-primaryBg);
   border-radius: 100%;
   box-shadow: 0 0 20px 20px rgba(12, 7, 10, 0.8);
   right: 30px;
@@ -35,7 +35,7 @@ const StyledGoTopButton = styled.button`
 
   &:hover {
     scale: 1.4;
-    transition: ${theme.animations.transitions};
+    transition: var(--transitions);
   }
 
   @media ${theme.media.tablet} {

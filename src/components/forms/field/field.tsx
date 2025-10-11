@@ -19,16 +19,16 @@ export const Field = ({ label, name, type = 'text' }: Props) => {
 
 const StyledField = styled.input`
   border: 1px solid rgba(158, 255, 0, 0.5);
-  background-color: ${theme.colors.secondaryBg};
+  background-color: var(--color-secondaryBg);
   width: calc(100% - 22px);
   padding: 10px 10px;
   border-radius: 10px;
 
   &:hover,
   &:active {
-    background-color: ${theme.colors.primaryBg};
-
-    transition: ${theme.animations.transitions};
+    background-color: var(--color-primaryBg);
+ 
+    transition: var(--transitions);
   }
 
   &::placeholder {
@@ -56,8 +56,8 @@ const FieldWrapper = styled.div`
     left: 10px;
     bottom: 10px;
     opacity: 0.6;
-    transition: ${theme.animations.transitions};
-
+    transition: var(--transitions);
+ 
     ${font({ max: 16, min: 14, weight: 300 })};
   }
 `

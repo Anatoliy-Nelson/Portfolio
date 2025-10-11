@@ -28,7 +28,7 @@ const Photo = styled.img`
   width: 100%;
   max-width: 400px;
   border-radius: 24px;
-  box-shadow: ${theme.shadow.main};
+ box-shadow: var(--shadow-main);
   object-fit: cover;
   height: auto;
   display: block;

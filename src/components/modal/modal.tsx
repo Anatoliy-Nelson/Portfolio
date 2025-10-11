@@ -33,9 +33,9 @@ const ModalWrapper = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   max-width: 350px;
-  background-color: ${theme.colors.primaryBg};
-  box-shadow: ${theme.shadow.main};
-  padding: 50px 30px;
+  background-color: var(--color-primaryBg);
+  box-shadow: var(--shadow-main);
+ padding: 50px 30px;
   border-radius: 10px;
 
   p {

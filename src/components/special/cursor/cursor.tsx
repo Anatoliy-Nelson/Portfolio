@@ -16,7 +16,7 @@ export const Cursor = ({ isMobile }: Props) => {
           innerScale={1.5}
           outerScale={1.3}
           innerStyle={{
-            backgroundColor: theme.colors.font,
+            backgroundColor: 'var(--color-font)',
           }}
           outerStyle={{
             backgroundColor: ' rgba(158, 255, 0, 0.3)',
