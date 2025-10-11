@@ -13,6 +13,11 @@ export const Particle = () => {
       id="tsparticles"
       init={particlesInit}
       options={{
+        background: {
+          color: {
+            value: '#0A192F', // Темно-синий цвет фона (соответствует теме приложения)
+          },
+        },
         fpsLimit: 120,
         interactivity: {
           events: {
