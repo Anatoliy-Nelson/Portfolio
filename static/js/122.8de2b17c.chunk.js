@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkportfolio_start=self.webpackChunkportfolio_start||[]).push([[122],{122:function(o){o.exports=JSON.parse('{"name":"Anatoly Manzhola","position":"Frontend Developer","sendButton":"Send message","downloadButton":"Download CV"}')}}]);

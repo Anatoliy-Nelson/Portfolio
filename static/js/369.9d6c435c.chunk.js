@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkportfolio_start=self.webpackChunkportfolio_start||[]).push([[369],{7369:function(e){e.exports=JSON.parse('{"description":"Designed and developed by Anatoly Manzhola 2025"}')}}]);

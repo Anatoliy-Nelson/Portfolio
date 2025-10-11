@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkportfolio_start=self.webpackChunkportfolio_start||[]).push([[731],{731:function(t){t.exports=JSON.parse('{"title":"\u0422\u0435\u0445\u043d\u043e\u043b\u043e\u0433\u0438\u0438"}')}}]);

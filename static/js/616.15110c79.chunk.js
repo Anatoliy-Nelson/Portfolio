@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkportfolio_start=self.webpackChunkportfolio_start||[]).push([[616],{7925:function(t){t.exports={title:"Skills"}}}]);

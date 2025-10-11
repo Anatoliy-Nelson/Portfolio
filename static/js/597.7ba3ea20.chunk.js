@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkportfolio_start=self.webpackChunkportfolio_start||[]).push([[597],{3597:function(o){o.exports=JSON.parse('{"menuHome":"Home","menuAboutMe":"About Me","menuSkills":"Skills","menuPortfolio":"Portfolio","menuContacts":"Contacts"}')}}]);
