@@ -14,8 +14,8 @@ export const Portfolio = () => {
   const projects = [
     {
       name: 'Learning Platform',
-      demo: 'https://',
-      code: 'https://',
+      demo: 'https://it-inc-cards-eta.vercel.app/',
+      code: 'https://github.com/Anatoliy-Nelson/cards-it-inc',
       photo: cardsPhoto,
       description: `${t('descriptionCards', { ns: 'portfolio' })}`,
     },
@@ -28,8 +28,8 @@ export const Portfolio = () => {
     },
     {
       name: 'Check Flow',
-      demo: 'https://',
-      code: 'https://',
+      demo: 'https://anatoliy-nelson.github.io/checkFlow/',
+      code: 'https://github.com/Anatoliy-Nelson/CheckFlow',
       photo: tasksPhoto,
       description: `${t('descriptionCheckFlow', { ns: 'portfolio' })}`,
     },
