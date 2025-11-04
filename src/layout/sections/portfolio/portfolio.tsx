@@ -28,7 +28,7 @@ export const Portfolio = () => {
     },
     {
       name: 'Check Flow',
-      demo: 'https://anatoliy-nelson.github.io/checkFlow/',
+      demo: 'https://anatoliy-nelson.github.io/СheckFlow/',
       code: 'https://github.com/Anatoliy-Nelson/CheckFlow',
       photo: tasksPhoto,
       description: `${t('descriptionCheckFlow', { ns: 'portfolio' })}`,
