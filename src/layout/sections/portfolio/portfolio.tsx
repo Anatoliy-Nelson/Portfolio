@@ -21,14 +21,14 @@ export const Portfolio = () => {
     },
     {
       name: 'Friend Connect',
-      demo: 'https://',
-      code: 'https://',
+      demo: 'https://anatoliy-nelson.github.io/Friend-Connect/',
+      code: 'https://github.com/Anatoliy-Nelson/Friend-Connect',
       photo: networkPhoto,
       description: `${t('descriptionSocialNetwork', { ns: 'portfolio' })}`,
     },
     {
       name: 'Check Flow',
-      demo: 'https://anatoliy-nelson.github.io/СheckFlow/',
+      demo: 'https://anatoliy-nelson.github.io/CheckFlow/',
       code: 'https://github.com/Anatoliy-Nelson/CheckFlow',
       photo: tasksPhoto,
       description: `${t('descriptionCheckFlow', { ns: 'portfolio' })}`,
