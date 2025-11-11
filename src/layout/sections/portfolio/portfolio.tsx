@@ -35,8 +35,8 @@ export const Portfolio = () => {
     },
     {
       name: 'Home Store',
-      demo: 'https://',
-      code: 'https://',
+      demo: 'https://home-store-rouge.vercel.app',
+      code: 'https://github.com/Anatoliy-Nelson/Home-Store',
       photo: homeStorePhoto,
       description: `${t('descriptionHomeStore', { ns: 'portfolio' })}`,
     },

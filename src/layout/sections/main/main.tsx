@@ -43,7 +43,7 @@ export const Main = () => {
                 <>
                   <Icon id={'save'} height={'20'} width={'20'} viewBox={'0 0 20 20'} aria-hidden={true} focusable={false} />
                   <a
-                    href={'https://drive.google.com/file/d/1wYKk-HxgywJugQgIuZvHfCSRxx9wD1p8/view?usp=sharing'}
+                    href={'https://drive.google.com/file/...'}
                     target="_blank"
                     rel="noopener noreferrer"
                     download
