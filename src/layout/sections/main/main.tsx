@@ -43,7 +43,7 @@ export const Main = () => {
                 <>
                   <Icon id={'save'} height={'20'} width={'20'} viewBox={'0 0 20 20'} aria-hidden={true} focusable={false} />
                   <a
-                    href={'https://drive.google.com/file/...'}
+                    href={'https://acrobat.adobe.com/id/urn%3Aaaid%3Asc%3AAP%3Aec4e9085-a51c-4eea-8e08-33740ebeb607/?filetype=application%2Fpdf&viewer%21megaVerb=group-discover'}
                     target="_blank"
                     rel="noopener noreferrer"
                     download
